@@ -3,11 +3,14 @@ import requests
 import time
 import os
 
+
+def format_timestamp(unix_time):
+    return time.strftime('%Y-%m-%d-%H-%M-%S', time.gmtime(unix_time))
+
 url = 'https://blockchain.info/ru/rawblock/'
 starting_hash = '00000000000000000255f3265753f2347320a95b92e0c0c08149d838105f3729'
 
-maximum_requests = 30000  # do not go up to 30000 just in case
-
+maximum_requests = 10  # do not go up to 30000 just in case
 time_limit = 8  # in hours
 
 # search through requests logs to see how many requests were performed in the last 8 hours
@@ -41,7 +44,7 @@ for i in range(len(logs), maximum_requests):  # to stay in max requests range
 
     r = requests.get(url+current_hash)
     block = json.loads(r.text)
-    block_timestamp_str = str(block['time'])
+    block_timestamp_str = format_timestamp(block['time'])
     block_index_str = str(block['block_index'])
     f_logs.write(str(time.time())+'\n')  # log the time when the request was made
     f = open('data/'+block_index_str+"__"+block_timestamp_str, "w+")
