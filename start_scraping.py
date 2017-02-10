@@ -6,7 +6,7 @@ import os
 url = 'https://blockchain.info/ru/rawblock/'
 starting_hash = '00000000000000000255f3265753f2347320a95b92e0c0c08149d838105f3729'
 
-maximum_requests = 20  # do not go up to 30000 just in case
+maximum_requests = 30000  # do not go up to 30000 just in case
 
 time_limit = 8  # in hours
 
