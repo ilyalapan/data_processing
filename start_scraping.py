@@ -10,7 +10,7 @@ def format_timestamp(unix_time):
 url = 'https://blockchain.info/ru/rawblock/'
 starting_hash = '00000000000000000255f3265753f2347320a95b92e0c0c08149d838105f3729'
 
-maximum_requests = 10  # do not go up to 30000 just in case
+maximum_requests = 30000  # do not go up to 30000 just in case
 time_limit = 8  # in hours
 
 # search through requests logs to see how many requests were performed in the last 8 hours
@@ -55,7 +55,6 @@ for i in range(len(logs), maximum_requests):  # to stay in max requests range
         f.write(str(transaction['time']) + ',' + str(transaction['tx_index']) + ',' + str(total_input)
                 + ','+block_index_str + ',' + block_timestamp_str+'\n')
     current_hash = block['prev_block']
-    print(str(i)+'th block finished')
     f.close()
 
 # record the hash the script stopped at
