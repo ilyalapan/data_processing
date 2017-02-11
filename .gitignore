@@ -1,1 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
+server_data
+data
+logs
+start_scraping_2.py
